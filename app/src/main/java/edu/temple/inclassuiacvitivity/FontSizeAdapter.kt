@@ -12,11 +12,15 @@ class FontSizeAdapter(private val context: Context, private val fontSizes : Arra
     override fun getItemId(p0: Int) = p0.toLong()
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val textview=TextView(context)
-
+        val textview : TextView
+        if(p1!=null){
+            textview = p1 as TextView
+        } else{
+            textview = TextView(context)
+            textview.setPadding(5,10,0,10)
+        }
         textview.text=fontSizes[p0].toString()
         textview.textSize=fontSizes[p0].toFloat()
-        textview.setPadding(5,10,0,10)
 
         return textview
     }
